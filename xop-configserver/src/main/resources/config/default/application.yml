@@ -1,0 +1,57 @@
+spring:
+  mvc:
+    throw-exception-if-no-handler-found: true #出现错误时, 直接抛出异常
+  #spring cloud 配置
+  cloud:
+    config:
+      uri: ${configserver.url:http://127.0.0.1:8888}
+    zookeeper:
+      connect-string: ${zookeeper.connect-string:localhost:2181}
+      
+#平台security 配置
+#platform:
+#  security:
+#    ignoreSecurityUrls: []
+#    globalIgnoreSecurityUrls: ["/static/**","/refresh","/info"]
+#    enableRequestTimestampValidator: false
+#    enableAppStatusValidator: false
+#    enableSignatureValidator: false
+
+
+
+#日志级别参数
+logging: 
+  level: 
+    root: INFO
+    org.springframework.web: ERROR
+    com.ifinance: DEBUG
+
+ifsp:
+  redisson:
+    enabled: false
+    enableHttpSession: false
+    singleServerConfig:
+      address: ${redis.address:redis://127.0.0.1:6379}
+      database: 0
+    codec: 
+      class: org.redisson.codec.FstCodec
+    threads: 0
+    nettyThreads: 0
+    useLinuxNativeEpoll: false
+    cacheNames:
+      #权限缓存(毫秒)
+      authorizationCache:
+        ttl: 60000
+        maxIdleTime: 60000
+---
+spring:
+  profiles: product
+
+#tomcat 参数配置
+server:
+  tomcat:
+    accept-count: ${tomcat.accept_count:1000}
+    max-connections: ${tomcat.max_connections:1000}
+    max-threads: ${tomcat.max_threads:200}
+    min-spare-threads: ${tomcat.min_spare_threads:50}
+    uri-encoding: UTF-8

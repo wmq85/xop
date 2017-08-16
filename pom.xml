@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.mqoo.platform</groupId>
+	<artifactId>xop-builder</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>xop-builder</name>
+	<scm>
+		<url>https://github.com/wmq85/xop</url>
+	</scm>
+	<developers>
+		<developer>
+			<id>mingqi.wang</id>
+			<name>mingqi.wang</name>
+			<email>wmq85@163.com</email>
+		</developer>
+	</developers>
+	<modules>
+		<module>xop-parent</module>
+		<module>xop-common</module>
+		<module>xop-support</module>
+		<module>xop-starter</module>
+		<module>xop-example</module>
+		<module>xop-monitor</module>
+		<module>xop-api-gateway</module>
+		<module>xop-configserver</module>
+	</modules>
+</project>

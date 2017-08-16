@@ -1,0 +1,11 @@
+server:
+  port: ${PORT0:8888}
+
+spring:
+  profiles: 
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: ${configserver.native.uri:file:///E:/work/space/ifsp/v0/xop/xop-configserver/src/main/resources/config/default}
