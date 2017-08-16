@@ -1,0 +1,7 @@
+server:
+  port: ${PORT0:10000}
+
+management:  
+  security:  
+    #关闭安全验证  
+    enabled: false  

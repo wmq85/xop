@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: xop-monitor-admin
+  cloud:  
+    zookeeper:  
+      enabled: true
+      connect-string: ${zookeeper.connect-string:localhost:2181}
+      discovery:  
+        root: /services
+        #注册当前节点  
+        register: true
+
+      
