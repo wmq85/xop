@@ -104,7 +104,31 @@
 	<dependencyManagement>
 		<dependencies>
 			<!-- xop start -->
-			
+			<dependency>
+				<groupId>com.mqoo.platform</groupId>
+				<artifactId>xop-common</artifactId>
+				<version>${xop.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mqoo.platform</groupId>
+				<artifactId>xop-support-mvc</artifactId>
+				<version>${xop.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mqoo.platform</groupId>
+				<artifactId>xop-support-exception</artifactId>
+				<version>${xop.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mqoo.platform</groupId>
+				<artifactId>xop-support-autoconfig</artifactId>
+				<version>${xop.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mqoo.platform</groupId>
+				<artifactId>xop-support-security</artifactId>
+				<version>${xop.version}</version>
+			</dependency>
 			<!-- xop end -->
 
 			<dependency>

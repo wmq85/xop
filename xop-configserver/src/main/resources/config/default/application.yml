@@ -9,13 +9,26 @@ spring:
       connect-string: ${zookeeper.connect-string:localhost:2181}
       
 #平台security 配置
-#platform:
-#  security:
-#    ignoreSecurityUrls: []
-#    globalIgnoreSecurityUrls: ["/static/**","/refresh","/info"]
-#    enableRequestTimestampValidator: false
-#    enableAppStatusValidator: false
-#    enableSignatureValidator: false
+platform:
+  security:
+    ignoreSecurityUrls: []
+    globalIgnoreSecurityUrls: ["/static/**","/refresh","/info"]
+    enableRequestTimestampValidator: false
+    enableAppStatusValidator: false
+    enableSignatureValidator: false
+
+#mybatis配置    
+mapper:
+  mappers: com.mqoo.platform.xop.support.mvc.dao.mybatis.BaseMapper
+  not-empty: false
+  identity: MYSQL
+#  order: BEFORE #oracle 配置
+  
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 
 
 
@@ -26,7 +39,7 @@ logging:
     org.springframework.web: ERROR
     com.ifinance: DEBUG
 
-ifsp:
+xop:
   redisson:
     enabled: false
     enableHttpSession: false

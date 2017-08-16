@@ -1,0 +1,24 @@
+server:
+  port: ${PORT0:9090}
+
+#平台security 配置
+#platform:
+#  security:
+#    ignoreSecurityUrls: []
+#    globalIgnoreSecurityUrls: ["/static/**","/refresh","/info"]
+#    enableRequestTimestampValidator: false
+#    enableAppStatusValidator: false
+#    enableSignatureValidator: false
+      
+mybatis:
+  type-aliases-package: com.mqoo.platform.xop.example.api.entity #多个包名可用逗号分隔
+  mapper-locations: classpath:mapper/*.xml
+ 
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: sa123;
+  jpa:
+    properties.hibernate.hbm2ddl.auto: update

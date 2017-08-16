@@ -1,0 +1,8 @@
+server:
+  port: ${PORT0:8081}
+
+zuul:
+  routes:
+    zk-server-demo:
+      path: /user/**
+      stripPrefix: false  

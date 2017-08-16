@@ -15,4 +15,11 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<modules>
+		<module>xop-support-mvc</module>
+		<module>xop-support-exception</module>
+		<module>xop-autoconfig</module>
+		<module>xop-support-autoconfig</module>
+		<module>xop-support-security</module>
+	</modules>
 </project>

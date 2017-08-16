@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Configuration
 @EnableAutoConfiguration
 @EnableConfigServer
-public class ConfigApplication {
+public class ConfigServerApplication {
 	
 	@RequestMapping("/")
 	public String home() {
@@ -23,7 +23,7 @@ public class ConfigApplication {
 	}
 	
     public static void main(String... args) {
-        SpringApplication.run(ConfigApplication.class, args).getEnvironment();
+        SpringApplication.run(ConfigServerApplication.class, args).getEnvironment();
     }
 
 }

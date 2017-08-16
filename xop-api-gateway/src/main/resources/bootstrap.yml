@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: xop-api-gateway
+  cloud:
+    config:
+      uri: ${configserver.url:http://127.0.0.1:8888}
+
+    zookeeper:
+      connect-string: ${zookeeper.connect-string:localhost:2181}
+      discovery:
+        register: false
