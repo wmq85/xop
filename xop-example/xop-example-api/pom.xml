@@ -30,10 +30,18 @@
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 		</dependency>
-		<dependency>  
-	        <groupId>org.springframework.cloud</groupId>  
-	        <artifactId>spring-cloud-starter-zookeeper-all</artifactId>  
-	    </dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jolokia</groupId>
+			<artifactId>jolokia-core</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.mqoo.platform</groupId>
 			<artifactId>xop-common</artifactId>
