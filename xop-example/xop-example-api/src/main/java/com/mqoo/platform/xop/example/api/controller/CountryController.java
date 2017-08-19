@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.mqoo.platform.xop.common.data.PageRequest;
+import com.mqoo.platform.xop.common.web.BaseController;
 import com.mqoo.platform.xop.common.web.api.response.BaseStatusSupportResponse;
 import com.mqoo.platform.xop.example.api.entity.Country;
 import com.mqoo.platform.xop.example.api.service.CountryService;
-import com.mqoo.platform.xop.support.mvc.controller.BaseController;
 
 import tk.mybatis.mapper.entity.Example;
 

@@ -6,7 +6,7 @@
 	<artifactId>xop-builder</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>xop-builder</name>
+	<name>xop</name>
 	<scm>
 		<url>https://github.com/wmq85/xop</url>
 	</scm>

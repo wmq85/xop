@@ -109,16 +109,29 @@
 				<artifactId>xop-common</artifactId>
 				<version>${xop.version}</version>
 			</dependency>
+			
+			<!-- starters -->
 			<dependency>
 				<groupId>com.mqoo.platform</groupId>
-				<artifactId>xop-support-mvc</artifactId>
+				<artifactId>xop-starter-spring-util</artifactId>
 				<version>${xop.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.mqoo.platform</groupId>
-				<artifactId>xop-support-exception</artifactId>
+				<artifactId>xop-starter-data-mybatis</artifactId>
 				<version>${xop.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.mqoo.platform</groupId>
+				<artifactId>xop-starter-exception</artifactId>
+				<version>${xop.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mqoo.platform</groupId>
+				<artifactId>xop-starter-security</artifactId>
+				<version>${xop.version}</version>
+			</dependency>
+			
 			<dependency>
 				<groupId>com.mqoo.platform</groupId>
 				<artifactId>xop-support-autoconfig</artifactId>

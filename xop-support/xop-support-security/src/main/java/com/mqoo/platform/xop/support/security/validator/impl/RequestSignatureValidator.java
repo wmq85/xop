@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mqoo.platform.xop.common.exception.authorization.AuthorizationException;
-import com.mqoo.platform.xop.common.util.BufferedRequestWrapper;
+import com.mqoo.platform.xop.common.web.BufferedRequestWrapper;
 import com.mqoo.platform.xop.common.web.api.Constants;
 import com.mqoo.platform.xop.support.security.SecurityProperties;
 import com.mqoo.platform.xop.support.security.SecurityValidateContext;

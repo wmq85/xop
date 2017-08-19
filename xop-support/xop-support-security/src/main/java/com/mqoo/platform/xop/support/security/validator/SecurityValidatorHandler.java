@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
 import com.google.common.collect.Lists;
-import com.mqoo.platform.xop.common.util.BufferedRequestWrapper;
+import com.mqoo.platform.xop.common.web.BufferedRequestWrapper;
 import com.mqoo.platform.xop.support.security.SecurityProperties;
 import com.mqoo.platform.xop.support.security.SecurityValidateContext;
 
