@@ -1,20 +1,18 @@
 package com.mqoo.xop.starter.security;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 
 import com.mqoo.xop.starter.security.filter.SecurityFilter;
 import com.mqoo.xop.starter.security.service.AppValidateService;
 import com.mqoo.xop.starter.security.service.SampleAppValidateService;
+import com.mqoo.xop.starter.security.validator.SecurityValidator;
+import com.mqoo.xop.starter.security.validator.SecurityValidatorHandler;
+import com.mqoo.xop.starter.security.validator.impl.AppStatusValidator;
+import com.mqoo.xop.starter.security.validator.impl.RequestSignatureValidator;
+import com.mqoo.xop.starter.security.validator.impl.TimestampValidator;
 
 /**
  * Security 配置
@@ -33,16 +31,40 @@ public class SecurityConfiguration {
      * @see SecurityFilter
      * @return FilterRegistrationBean
      */
+    // @Bean
+    // @Order(Ordered.LOWEST_PRECEDENCE + 1)
+    // public FilterRegistrationBean securityFilterRegistrationBean() {
+    // FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+    // SecurityFilter securityFilter = new SecurityFilter();
+    // registrationBean.setFilter(securityFilter);
+    // List<String> urlPatterns = new ArrayList<String>();
+    // urlPatterns.add("/*");
+    // registrationBean.setUrlPatterns(urlPatterns);
+    // return registrationBean;
+    // }
     @Bean
-    @Order(Ordered.LOWEST_PRECEDENCE + 1)
-    public FilterRegistrationBean securityFilterRegistrationBean() {
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        SecurityFilter securityFilter = new SecurityFilter();
-        registrationBean.setFilter(securityFilter);
-        List<String> urlPatterns = new ArrayList<String>();
-        urlPatterns.add("/*");
-        registrationBean.setUrlPatterns(urlPatterns);
-        return registrationBean;
+    public SecurityValidatorHandler SecurityValidatorHandler(SecurityProperties securityProperties,
+            SecurityValidator[] securityValidators) {
+        SecurityValidatorHandler securityValidatorHandler =
+                new SecurityValidatorHandler(securityValidators, securityProperties);
+        return securityValidatorHandler;
+    }
+
+    @Bean
+    public AppStatusValidator appStatusValidator(SecurityProperties securityProperties,
+            AppValidateService appValidateService) {
+        return new AppStatusValidator(appValidateService, securityProperties);
+    }
+
+    @Bean
+    public RequestSignatureValidator requestSignatureValidator(
+            SecurityProperties securityProperties, AppValidateService appValidateService) {
+        return new RequestSignatureValidator(appValidateService, securityProperties);
+    }
+
+    @Bean
+    public TimestampValidator timestampValidator(SecurityProperties securityProperties) {
+        return new TimestampValidator(securityProperties);
     }
 
     /**
@@ -53,9 +75,9 @@ public class SecurityConfiguration {
      * @return AppValidateService
      */
     @Bean
-    @ConditionalOnMissingBean(AppValidateService.class)
-    public AppValidateService sampleAppValidateService() {
-        AppValidateService sampleAppValidateService = new SampleAppValidateService();
+    public AppValidateService sampleAppValidateService(SecurityProperties securityProperties) {
+        AppValidateService sampleAppValidateService =
+                new SampleAppValidateService(securityProperties);
         return sampleAppValidateService;
     }
 }

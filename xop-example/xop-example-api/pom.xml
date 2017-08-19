@@ -55,10 +55,6 @@
 			<artifactId>xop-starter-exception</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.mqoo.platform</groupId>
-			<artifactId>xop-starter-security</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
  * @see org.springframework.web.servlet.HandlerExceptionResolver#resolveException
  * @author mingqi.wang
  */
+@Deprecated
 public class ExceptionHandlerFilter extends OncePerRequestFilter {
     HandlerExceptionResolver handlerExceptionResolver;
 
