@@ -2,7 +2,7 @@ package com.mqoo.platform.xop.support.security;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.mqoo.platform.xop.common.util.BufferedRequestWrapper;
+import com.mqoo.platform.xop.common.web.BufferedRequestWrapper;
 import com.mqoo.platform.xop.common.web.api.Constants;
 
 /**

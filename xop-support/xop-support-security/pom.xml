@@ -23,6 +23,10 @@
 			<artifactId>xop-common</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.mqoo.platform</groupId>
+			<artifactId>xop-starter-spring-util</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 		</dependency>

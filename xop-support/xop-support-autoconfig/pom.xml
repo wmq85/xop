@@ -27,14 +27,7 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.mqoo.platform</groupId>
-			<artifactId>xop-support-mvc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.mqoo.platform</groupId>
-			<artifactId>xop-support-exception</artifactId>
-		</dependency>
+		
 		<dependency>
 			<groupId>com.mqoo.platform</groupId>
 			<artifactId>xop-support-security</artifactId>

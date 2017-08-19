@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mqoo.platform.xop.common.exception.app.AppAmountLimitException;
-import com.mqoo.platform.xop.support.mvc.controller.BaseController;
+import com.mqoo.platform.xop.common.web.BaseController;
 
 /**
  * 异常示例controller

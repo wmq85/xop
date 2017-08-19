@@ -48,19 +48,15 @@
 		</dependency>
 		<dependency>
 			<groupId>com.mqoo.platform</groupId>
-			<artifactId>xop-support-mvc</artifactId>
+			<artifactId>xop-starter-data-mybatis</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.mqoo.platform</groupId>
-			<artifactId>xop-support-exception</artifactId>
+			<artifactId>xop-starter-exception</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.mqoo.platform</groupId>
-			<artifactId>xop-support-autoconfig</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.mqoo.platform</groupId>
-			<artifactId>xop-support-security</artifactId>
+			<artifactId>xop-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>

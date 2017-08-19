@@ -7,29 +7,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.mqoo.platform.xop.support.mvc.dao.BaseEntity;
+import com.mqoo.platform.xop.common.data.BaseEntity;
 
 @Entity
-@Table(name="TEST_COUNTRY")
+@Table(name = "country")
 public class Country extends BaseEntity {
-	
-	/**
-	 * IDENTITY方式ID主键配置
-	 */
-	/*@Id
+
+    /**
+     * IDENTITY方式ID主键配置
+     */
+    @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;*/
-	
-	
-	/**
-	 * seq方式ID主键配置
-	 */
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "select SQ_TEST_COUNTRY.nextval from dual")
-	private Long id;
+    private Long id;
+
+    /**
+     * seq方式ID主键配置
+     */
+    // @Id
+    // @Column(name = "id")
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // //@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "select
+    // SQ_TEST_COUNTRY.nextval from dual")
+    // private Long id;
 
     /**
      * 名称
@@ -77,8 +77,8 @@ public class Country extends BaseEntity {
         this.countrycode = countrycode;
     }
 
-	@Override
-	public Long getId() {
-		return this.id;
-	}
+    @Override
+    public Long getId() {
+        return this.id;
+    }
 }

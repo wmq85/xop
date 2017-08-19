@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.mqoo.xop.starter.security.SecurityConfiguration

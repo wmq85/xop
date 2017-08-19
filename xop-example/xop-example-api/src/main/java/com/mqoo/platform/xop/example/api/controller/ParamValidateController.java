@@ -4,10 +4,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mqoo.platform.xop.common.web.BaseController;
 import com.mqoo.platform.xop.common.web.api.response.BaseStatusSupportResponse;
 import com.mqoo.platform.xop.example.api.controller.Person.CHECKADDR;
 import com.mqoo.platform.xop.example.api.controller.Person.CHECKNAME;
-import com.mqoo.platform.xop.support.mvc.controller.BaseController;
 
 /**
  * 参数校验示例controller
