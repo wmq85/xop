@@ -18,5 +18,6 @@
 		<module>xop-starter-spring-util</module>
     <module>xop-starter-exception</module>
     <module>xop-starter-security</module>
+    <module>xop-starter-cache-redis</module>
   </modules>
 </project>

@@ -1,6 +1,19 @@
 server:
   port: ${PORT0:9090}
-      
+
+#mybatis配置    
+mapper:
+  mappers: com.mqoo.xop.starter.data.mybatis.dao.BaseMapper
+  not-empty: false
+  identity: MYSQL
+#  order: BEFORE #oracle 配置
+  
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+        
 mybatis:
   type-aliases-package: com.mqoo.platform.xop.example.api.entity #多个包名可用逗号分隔
   mapper-locations: classpath:mapper/*.xml
@@ -13,3 +26,24 @@ spring:
     password: sa123;
   jpa:
     properties.hibernate.hbm2ddl.auto: update
+
+xop:
+  cache:
+    #是否开启spring session
+    enableHttpSession: false
+    #spring cache name
+    cacheNames:
+      authorizationCache:
+        ttl: 60000
+        maxIdleTime: 60000
+    #redisson 配置
+    redisson:
+      singleServerConfig:
+        address: ${redis.address:redis://127.0.0.1:6379}
+        database: 0
+      codec: 
+        class: org.redisson.codec.FstCodec
+      threads: 0
+      nettyThreads: 0
+      useLinuxNativeEpoll: false
+      

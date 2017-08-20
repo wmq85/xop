@@ -14,8 +14,8 @@ xop:
         appId: app_01
         privateKey: MIIBVwIBADANBgkqhkiG9w0BAQEFAASCAUEwggE9AgEAAkEAozycmWgVy5+qh5QZiwyKfhugUDHFpThHqYlroF2vbu8Kx3a2Ycvo8txPJf+udJtEjMcSUrvGUaVKRc8hhGWxmwIDAQABAkEAik6IwNIX5XdbHZS2L8JodYEiy8/gDqUo0tTEhBPc2LgB6kwRsJYHVYCNKjMJ0dAO+7U/H8N86jHSKUtCY1muQQIhAPDo7NsQnGRXNGBtUd8ePaZPdqocRhEDspvqwBcXCoIdAiEArXYrwGiR/nzcG9DV/jqyAErLI2d23ewtyIcbrKRUNRcCIQDGhNqxhpWpZecGUu91ceERjEfX1Ca03JwxOZgDLvx8zQIhAIooArTfFNjizdUBwk8YpMmCyMTMFWqwP87lfW9F+yPFAiEAlSZ0tWzW+ZrCKBsaQzIh8HkLEz9CzN4INFj9Frf/oKw=
         publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKM8nJloFcufqoeUGYsMin4boFAxxaU4R6mJa6Bdr27vCsd2tmHL6PLcTyX/rnSbRIzHElK7xlGlSkXPIYRlsZsCAwEAAQ==
-      
 
+#路由配置
 zuul:
   routes:
     xop-example-api:

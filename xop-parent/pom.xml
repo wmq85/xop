@@ -68,7 +68,7 @@
 		<oracle.version>10.2.0.4.0</oracle.version>
 		<!-- log -->
 		<slf4j.version>1.7.21</slf4j.version>
-		<redission.version>3.4.2</redission.version>
+		<redission.version>3.5.0</redission.version>
 		<lz4.version>1.3.0</lz4.version>
 		<fst.version>2.48</fst.version>
 		<!-- dubbo -->
@@ -131,17 +131,12 @@
 				<artifactId>xop-starter-security</artifactId>
 				<version>${xop.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.mqoo.platform</groupId>
+				<artifactId>xop-starter-cache-redis</artifactId>
+				<version>${xop.version}</version>
+			</dependency>
 			
-			<dependency>
-				<groupId>com.mqoo.platform</groupId>
-				<artifactId>xop-support-autoconfig</artifactId>
-				<version>${xop.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.mqoo.platform</groupId>
-				<artifactId>xop-support-security</artifactId>
-				<version>${xop.version}</version>
-			</dependency>
 			<!-- xop end -->
 
 			<dependency>
