@@ -19,5 +19,6 @@
     <module>xop-starter-exception</module>
     <module>xop-starter-security</module>
     <module>xop-starter-cache-redis</module>
+    <module>xop-starter-datasource-druid</module>
   </modules>
 </project>

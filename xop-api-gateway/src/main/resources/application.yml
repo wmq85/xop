@@ -5,7 +5,7 @@ server:
 xop:
   security:
     ignoreSecurityUrls: []
-    globalIgnoreSecurityUrls: ["/static/**","/refresh","/info"]
+    globalIgnoreSecurityUrls: ["/static/**"]
     enableRequestTimestampValidator: false
     enableAppStatusValidator: true
     enableSignatureValidator: false
