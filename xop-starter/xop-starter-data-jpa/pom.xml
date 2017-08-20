@@ -19,6 +19,14 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
+		   <groupId>com.alibaba</groupId>
+		   <artifactId>druid-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.mqoo.platform</groupId>
 			<artifactId>xop-common</artifactId>
 		</dependency>

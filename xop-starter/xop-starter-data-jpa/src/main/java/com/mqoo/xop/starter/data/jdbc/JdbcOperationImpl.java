@@ -1,4 +1,4 @@
-package com.mqoo.xop.starter.data.jpa.jdbc;
+package com.mqoo.xop.starter.data.jdbc;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,7 +8,6 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -19,8 +18,10 @@ import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Lists;
-import com.mqoo.xop.starter.data.jpa.dialect.AbstractDialect;
-import com.mqoo.xop.starter.data.jpa.dialect.Dialect;
+import com.mqoo.platform.xop.common.data.PageInfo;
+import com.mqoo.xop.starter.data.Repository;
+import com.mqoo.xop.starter.data.jdbc.dialect.AbstractDialect;
+import com.mqoo.xop.starter.data.jdbc.dialect.Dialect;
 
 /**
  * JDBC持久化实现类
@@ -35,11 +36,8 @@ import com.mqoo.xop.starter.data.jpa.dialect.Dialect;
 public class JdbcOperationImpl implements JdbcOperation {
     private Logger LOG = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    protected Environment environment;
+    private Environment environment;
 
     protected Dialect determineDialect() {
         String dataSourceUrl = environment.getProperty("spring.datasource.url");
@@ -85,7 +83,7 @@ public class JdbcOperationImpl implements JdbcOperation {
     }
 
     @Override
-    public <E> Page<E> find(String sql, Object[] parameters, int pageNo, int pageSize,
+    public <E> PageInfo<E> find(String sql, Object[] parameters, int pageNo, int pageSize,
             Class<E> entity) {
         // 将SQL语句进行分页处理
         List<Object> params = Lists.newArrayList(parameters);
@@ -111,11 +109,11 @@ public class JdbcOperationImpl implements JdbcOperation {
             list = jdbcTemplate.query(listSql, parametersNew, new BeanPropertyRowMapper<E>(entity));
         }
         Page<E> page = new PageImpl<E>(list, new PageRequest(pageNo, pageSize), total);
-        return page;
+        return Repository.pageConvert(page);
     }
 
     @Override
-    public Page<Map<String, Object>> find(String sql, Object[] parameters, int pageNo,
+    public PageInfo<Map<String, Object>> find(String sql, Object[] parameters, int pageNo,
             int pageSize) {
         // 将SQL语句进行分页处理
         List<Object> params = Lists.newArrayList(parameters);
@@ -142,7 +140,7 @@ public class JdbcOperationImpl implements JdbcOperation {
         }
         Page<Map<String, Object>> page =
                 new PageImpl<>(list, new PageRequest(pageNo, pageSize), total);
-        return page;
+        return Repository.pageConvert(page);
     }
 
     @Override
@@ -164,5 +162,13 @@ public class JdbcOperationImpl implements JdbcOperation {
             return jdbcTemplate.queryForList(sql);
         }
         return jdbcTemplate.queryForList(sql, params);
+    }
+
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
     }
 }

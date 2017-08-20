@@ -1,23 +1,6 @@
 server:
   port: ${PORT0:9080}
 
-#mybatis配置    
-mapper:
-  mappers: com.mqoo.xop.starter.data.mybatis.dao.BaseMapper
-  not-empty: false
-  identity: MYSQL
-#  order: BEFORE #oracle 配置
-  
-pagehelper:
-  helperDialect: mysql
-  reasonable: true
-  supportMethodsArguments: true
-  params: count=countSql
-        
-mybatis:
-  type-aliases-package: com.mqoo.platform.xop.example.dubbo.provider.entity #多个包名可用逗号分隔
-  mapper-locations: classpath:mapper/*.xml
- 
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource

@@ -2,7 +2,6 @@ package com.mqoo.platform.xop.example.dubbo.provider;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "com.mqoo")
-@MapperScan(basePackages = {"com.mqoo.platform.xop.example.dubbo.provider.mapper"})
 @EnableDiscoveryClient
 public class DubboProviderExampleServer {
 

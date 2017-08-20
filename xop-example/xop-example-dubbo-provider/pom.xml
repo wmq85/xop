@@ -47,7 +47,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.mqoo.platform</groupId>
-			<artifactId>xop-starter-data-mybatis</artifactId>
+			<artifactId>xop-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.mqoo.platform</groupId>

@@ -1,9 +1,10 @@
-package com.mqoo.xop.starter.data.jpa.jdbc;
+package com.mqoo.xop.starter.data.jdbc;
 
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.data.domain.Page;
+import com.mqoo.platform.xop.common.data.PageInfo;
+import com.mqoo.xop.starter.data.Repository;
 
 /**
  * JDBC操作接口类
@@ -11,7 +12,7 @@ import org.springframework.data.domain.Page;
  * @author mingqi.wang
  * @since 2017/08/02
  */
-public interface JdbcOperation {
+public interface JdbcOperation extends Repository {
     /**
      * sql查询
      * 
@@ -43,7 +44,7 @@ public interface JdbcOperation {
      * @param entity
      * @return
      */
-    public <E> Page<E> find(String sql, Object[] parameters, int pageNo, int pageSize,
+    public <E> PageInfo<E> find(String sql, Object[] parameters, int pageNo, int pageSize,
             Class<E> entity);
 
     /**
@@ -62,6 +63,6 @@ public interface JdbcOperation {
 
     public List<Map<String, Object>> find(String sql, Object[] params);
 
-    public Page<Map<String, Object>> find(String sql, Object[] parameters, int pageNo,
+    public PageInfo<Map<String, Object>> find(String sql, Object[] parameters, int pageNo,
             int pageSize);
 }

@@ -1,4 +1,4 @@
-package com.mqoo.xop.starter.data.jpa.dialect;
+package com.mqoo.xop.starter.data.jdbc.dialect;
 
 import java.util.ArrayList;
 import java.util.List;
