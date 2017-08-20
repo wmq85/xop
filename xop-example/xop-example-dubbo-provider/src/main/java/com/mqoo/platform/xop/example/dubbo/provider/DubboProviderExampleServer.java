@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "com.mqoo")
+@EntityScan("com.mqoo.platform.xop.example.dubbo.entity")
 @EnableDiscoveryClient
 public class DubboProviderExampleServer {
 
