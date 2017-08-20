@@ -56,7 +56,15 @@
 		</dependency>
 		<dependency>
 			<groupId>com.mqoo.platform</groupId>
-			<artifactId>xop-starter-security</artifactId>
+			<artifactId>xop-starter-cache-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mqoo.platform</groupId>
+			<artifactId>xop-starter-dubbo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mqoo.platform</groupId>
+			<artifactId>xop-example-dubbo-service</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>

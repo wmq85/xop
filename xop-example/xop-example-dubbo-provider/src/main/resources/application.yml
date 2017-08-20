@@ -1,0 +1,64 @@
+server:
+  port: ${PORT0:9080}
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    name: druid
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/xop
+    username: root
+    password: sa123;
+    # druid配置请参考https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter
+    druid:
+      initialSize: ${datasource.druid.initialSize:5}
+      minIdle: ${datasource.druid.minIdle:5}
+      maxActive: ${datasource.druid.maxActive:20}
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM dual
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: false
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      #filters: stat,wall,log4j
+      
+  jpa:
+    properties.hibernate.hbm2ddl.auto: update
+    
+  dubbo:
+    application:
+      name: ${spring.application.name}
+    registry:
+      address: zookeeper://127.0.0.1:2181
+    protocol:
+      name: dubbo
+      port: 20880
+    module:
+      name: ${spring.application.name}
+    scan: com.mqoo
+
+xop:
+  cache:
+    #是否开启spring session
+    enableHttpSession: false
+    #spring cache name
+    cacheNames:
+      authorizationCache:
+        ttl: 60000
+        maxIdleTime: 60000
+    #redisson 配置
+    redisson:
+      singleServerConfig:
+        address: ${redis.address:redis://127.0.0.1:6379}
+        database: 0
+      codec: 
+        class: org.redisson.codec.FstCodec
+      threads: 0
+      nettyThreads: 0
+      useLinuxNativeEpoll: false
+      

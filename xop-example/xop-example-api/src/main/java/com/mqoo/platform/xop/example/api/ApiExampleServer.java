@@ -12,23 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * ifsp api server 
+ * xop api server
  *
  */
 @Controller
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "com.mqoo")
-@MapperScan(basePackages={"com.mqoo.platform.xop.example.api.mapper"})
+@MapperScan(basePackages = {"com.mqoo.platform.xop.example.api.mapper"})
 @EnableDiscoveryClient
-public class ApiExampleServer 
-{
-	@RequestMapping("/")
+public class ApiExampleServer {
+    @RequestMapping("/")
     @ResponseBody
     String home(HttpServletRequest request) {
         return "api server.";
     }
-	
-	public static void main(String[] args) throws Exception {
+
+    public static void main(String[] args) throws Exception {
         SpringApplication.run(ApiExampleServer.class, args);
     }
 }

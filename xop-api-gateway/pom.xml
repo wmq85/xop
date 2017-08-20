@@ -31,5 +31,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.mqoo.platform</groupId>
+			<artifactId>xop-starter-exception</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mqoo.platform</groupId>
+			<artifactId>xop-starter-security</artifactId>
+		</dependency>
 	</dependencies>
 </project>

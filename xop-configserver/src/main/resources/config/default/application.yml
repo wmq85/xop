@@ -6,54 +6,13 @@ spring:
     zookeeper:
       connect-string: ${zookeeper.connect-string:localhost:2181}
       
-#平台security 配置
-platform:
-  security:
-    ignoreSecurityUrls: []
-    globalIgnoreSecurityUrls: ["/static/**","/refresh","/info"]
-    enableRequestTimestampValidator: false
-    enableAppStatusValidator: false
-    enableSignatureValidator: false
-
-#mybatis配置    
-mapper:
-  mappers: com.mqoo.xop.starter.data.mybatis.dao.BaseMapper
-  not-empty: false
-  identity: MYSQL
-#  order: BEFORE #oracle 配置
-  
-pagehelper:
-  helperDialect: mysql
-  reasonable: true
-  supportMethodsArguments: true
-  params: count=countSql
-
-
-
 #日志级别参数
 logging: 
   level: 
     root: INFO
     org.springframework.web: ERROR
-    com.ifinance: DEBUG
+    com.mqoo: DEBUG
 
-xop:
-  redisson:
-    enabled: false
-    enableHttpSession: false
-    singleServerConfig:
-      address: ${redis.address:redis://127.0.0.1:6379}
-      database: 0
-    codec: 
-      class: org.redisson.codec.FstCodec
-    threads: 0
-    nettyThreads: 0
-    useLinuxNativeEpoll: false
-    cacheNames:
-      #权限缓存(毫秒)
-      authorizationCache:
-        ttl: 60000
-        maxIdleTime: 60000
 ---
 spring:
   profiles: product
