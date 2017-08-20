@@ -27,10 +27,9 @@
 
 		<!-- spring framework -->
 		<spring-cloud.version>Dalston.SR1</spring-cloud.version>
-		<spring-boot.version>1.5.2.RELEASE</spring-boot.version>
+		<spring-boot.version>1.4.3.RELEASE</spring-boot.version>
 		<spring-boot-admin.version>1.5.2</spring-boot-admin.version>
 		<springloaded.version>1.2.6.RELEASE</springloaded.version>
-		<spring.version>4.3.7.RELEASE</spring.version>
 
 		<!-- test -->
 		<junit.version>4.12</junit.version>
@@ -112,7 +111,7 @@
 				<version>${xop.version}</version>
 			</dependency>
 			
-			<!-- starters -->
+			<!-- xop starters -->
 			<dependency>
 				<groupId>com.mqoo.platform</groupId>
 				<artifactId>xop-starter-spring-util</artifactId>
@@ -121,6 +120,11 @@
 			<dependency>
 				<groupId>com.mqoo.platform</groupId>
 				<artifactId>xop-starter-data-mybatis</artifactId>
+				<version>${xop.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mqoo.platform</groupId>
+				<artifactId>xop-starter-data-jpa</artifactId>
 				<version>${xop.version}</version>
 			</dependency>
 			<dependency>
@@ -136,6 +140,11 @@
 			<dependency>
 				<groupId>com.mqoo.platform</groupId>
 				<artifactId>xop-starter-cache-redis</artifactId>
+				<version>${xop.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mqoo.platform</groupId>
+				<artifactId>xop-starter-dubbo</artifactId>
 				<version>${xop.version}</version>
 			</dependency>
 			
@@ -214,13 +223,7 @@
 				<version>${fest-assert.version}</version>
 				<scope>test</scope>
 			</dependency>
-
-			<!-- apache commons -->
-			<dependency>
-				<groupId>commons-lang</groupId>
-				<artifactId>commons-lang</artifactId>
-				<version>${commons-lang.version}</version>
-			</dependency>
+			
 			<!-- quartz -->
 			<dependency>
 				<groupId>org.quartz-scheduler</groupId>
@@ -296,6 +299,12 @@
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
 				<version>${guava.version}</version>
+			</dependency>
+			<!-- apache commons -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons-lang.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.commons</groupId>

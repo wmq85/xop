@@ -1,5 +1,5 @@
 server:
-  port: ${PORT0:9090}
+  port: ${PORT0:9080}
 
 #mybatis配置    
 mapper:
@@ -15,7 +15,7 @@ pagehelper:
   params: count=countSql
         
 mybatis:
-  type-aliases-package: com.mqoo.platform.xop.example.api.entity #多个包名可用逗号分隔
+  type-aliases-package: com.mqoo.platform.xop.example.dubbo.provider.entity #多个包名可用逗号分隔
   mapper-locations: classpath:mapper/*.xml
  
 spring:
@@ -43,6 +43,7 @@ spring:
       testOnReturn: false
       # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
       #filters: stat,wall,log4j
+      
   jpa:
     properties.hibernate.hbm2ddl.auto: update
     
@@ -56,7 +57,8 @@ spring:
       port: 20880
     module:
       name: ${spring.application.name}
-    scan: com.mqoo.platform.xop.example
+    scan: com.mqoo
+
 xop:
   cache:
     #是否开启spring session
