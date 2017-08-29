@@ -22,5 +22,6 @@
 	    <module>xop-starter-datasource-druid</module>
 	    <module>xop-starter-dubbo</module>
 	    <module>xop-starter-data-jpa</module>
-  </modules>
+	    <module>xop-starter-token</module>
+	</modules>
 </project>

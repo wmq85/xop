@@ -144,6 +144,11 @@
 			</dependency>
 			<dependency>
 				<groupId>com.mqoo.platform</groupId>
+				<artifactId>xop-starter-token</artifactId>
+				<version>${xop.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mqoo.platform</groupId>
 				<artifactId>xop-starter-dubbo</artifactId>
 				<version>${xop.version}</version>
 			</dependency>

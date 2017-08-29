@@ -3,6 +3,9 @@ package com.mqoo.platform.xop.common.util;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.util.StringUtils;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
  * HttpUtil
@@ -35,4 +38,19 @@ public class HttpUtil {
 			return request.getRemoteAddr();
 		}
 	}
+	
+	/**
+     * 获取当前http 请求
+     * 
+     * @return
+     */
+    public static HttpServletRequest getCurrentHttpRequest() {
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+        if (requestAttributes instanceof ServletRequestAttributes) {
+            HttpServletRequest request =
+                    ((ServletRequestAttributes) requestAttributes).getRequest();
+            return request;
+        }
+        return null;
+    }
 }

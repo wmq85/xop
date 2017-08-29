@@ -15,11 +15,13 @@ import com.mqoo.xop.starter.security.validator.SecurityValidator;
 /**
  * 接口请求签名验证
  * <p>
- * 签名规则：RSA(requestBody + time + requestUri+ token)<br>
- * requestBody：http请求体<br>
- * time:时间戳，精确到毫秒<br>
- * requestUri：http请求url,包含query string<br>
- * token: 当token存在时,需加入签名字符串
+ * 签名顺序<br>
+ * 1、http mothod，小写<br>
+ * 2、requestUri：http请求url,包含query string<br>
+ * 3、appKey<br>
+ * 4、timestamp:时间戳，精确到毫秒<br>
+ * 5、token: 用户登录token<br>
+ * 6、requestBody：请求体<br>
  * 
  * @author mingqi.wang
  * @since 2017/7/4
@@ -49,6 +51,8 @@ public class RequestSignatureValidator implements SecurityValidator {
                 requestUri = String.format("%s?%s", requestUri, queryStringNoToken);
             }
             //
+            String method = request.getMethod().toLowerCase();
+            //
             String requestBody = "";
             try {
                 requestBody = request.getRequestBody();
@@ -61,16 +65,40 @@ public class RequestSignatureValidator implements SecurityValidator {
             String appKey = securityValidateContext.getAppKey();
             String token = securityValidateContext.getToken();
             if (StringUtils.isEmpty(time)) {
-                throw new SecurityValidateException("miss X-Request-Timestamp header.");
+                throw new SecurityValidateException("miss timestamp header.");
             }
             if (StringUtils.isEmpty(signature)) {
-                throw new SecurityValidateException("miss X-Request-Signature header.");
+                throw new SecurityValidateException("miss signature header.");
             }
             if (StringUtils.isEmpty(appKey)) {
-                throw new SecurityValidateException("miss app key.");
+                throw new SecurityValidateException("miss authorization header contained app key.");
             }
             //
-            String signStr = requestBody + time + requestUri + StringUtils.defaultString(token);
+            // 1、http mothod，小写<br>
+            // 2、requestUri：http请求url,包含query string<br>
+            // 3、appKey<br>
+            // 4、timestamp:时间戳，精确到毫秒<br>
+            // 5、token: 用户登录token<br>
+            // 6、requestBody：请求体<br>
+            StringBuffer sbf = new StringBuffer();
+            //@formatter:off
+            sbf.append(method)
+               .append("\n")
+               .append(requestUri)
+               .append("\n")
+               .append(appKey)
+               .append("\n")
+               .append(time)
+               .append("\n")
+               .append(StringUtils.defaultString(token))
+               .append("\n")
+               .append(requestBody)
+               ;
+            //@formatter:on
+            //
+            String signStr = sbf.toString();
+            LOG.debug("signature from request:{}", signature);
+            LOG.debug("signature data :\n{}", signStr);
             boolean verify = appValidateService.signVerify(appKey, signStr, signature);
             if (!verify) {
                 throw new SecurityValidateException("illegal request signature.");
@@ -86,7 +114,8 @@ public class RequestSignatureValidator implements SecurityValidator {
 
     private String removeTokenParamFromURI(String queryStr) {
         String p = "&{0,1}" + Constants.HttpParam.ACCESS_TOKEN + "=[\\w-_]*";
-        String queryStrWithoutToken = StringUtils.replacePattern(queryStr, p, "");
+        String queryStrWithoutToken =
+                StringUtils.replacePattern(StringUtils.defaultString(queryStr), p, "");
         return queryStrWithoutToken;
     }
 }
