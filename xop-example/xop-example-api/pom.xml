@@ -70,5 +70,10 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.mqoo.platform</groupId>
+			<artifactId>xop-starter-zipkin</artifactId>
+		</dependency>
 	</dependencies>
 </project>

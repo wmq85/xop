@@ -10,6 +10,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mqoo.xop.starter.zipkin.annotation.EnableTraceAutoConfigurationProperties;
+
 /**
  * dubbo provider example server
  *
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @ComponentScan(basePackages = "com.mqoo")
 @EntityScan("com.mqoo.platform.xop.example.dubbo.entity")
 @EnableDiscoveryClient
+@EnableTraceAutoConfigurationProperties
 public class DubboProviderExampleServer {
 
     @RequestMapping("/")

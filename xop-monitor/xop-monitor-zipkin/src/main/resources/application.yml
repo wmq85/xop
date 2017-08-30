@@ -1,0 +1,34 @@
+server:
+  port: ${PORT0:9441}
+
+#zipkin数据保存到数据库中需要进行如下配置
+#表示当前程序不使用sleuth
+#spring:
+#  sleuth:
+#    enabled: false
+#
+##数据库脚本创建地址，当有多个是可使用[x]表示集合第几个元素
+#  datasource:
+#    schema: classpath:/zipkin.sql
+#    url: jdbc:mysql://localhost:3306/zipkin?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+#    username: root
+#    password: 123456
+#    driver-class-name: com.mysql.jdbc.Driver
+#    initialize: true
+#    continue-on-error: true   
+#
+
+##表示zipkin数据存储方式是mysql
+zipkin:
+  storage:
+    type: mysql   
+
+spring:
+  datasource:
+    schema: classpath:/zipkin.sql
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zipkin
+    username: root
+    password: sa123;
+    initialize: true
+    continue-on-error: true 

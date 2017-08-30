@@ -61,4 +61,10 @@ xop:
       threads: 0
       nettyThreads: 0
       useLinuxNativeEpoll: false
-      
+
+dubbo:
+  trace:
+    enabled: true
+    connectTimeout: 1000
+    readTimeout: 1000
+    zipkinUrl: http://localhost:9441      

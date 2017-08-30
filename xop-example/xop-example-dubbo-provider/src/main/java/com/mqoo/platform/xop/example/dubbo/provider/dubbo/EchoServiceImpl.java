@@ -15,7 +15,7 @@ import com.mqoo.platform.xop.example.dubbo.model.EchoInfo;
 import com.mqoo.platform.xop.example.dubbo.provider.service.CountryService;
 import com.mqoo.platform.xop.example.dubbo.service.EchoInfoService;
 
-@Service(version = "1.0.0")
+@Service(version = "1.0.0",filter={"traceProviderFilter"})
 public class EchoServiceImpl implements EchoInfoService {
     Logger LOG = LoggerFactory.getLogger(this.getClass());
     @Autowired
