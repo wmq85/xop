@@ -16,11 +16,12 @@
 	<modules>
 		<module>xop-starter-data-mybatis</module>
 		<module>xop-starter-spring-util</module>
-    <module>xop-starter-exception</module>
-    <module>xop-starter-security</module>
-    <module>xop-starter-cache-redis</module>
-    <module>xop-starter-datasource-druid</module>
-    <module>xop-starter-dubbo</module>
-    <module>xop-starter-data-jpa</module>
-  </modules>
+	    <module>xop-starter-exception</module>
+	    <module>xop-starter-security</module>
+	    <module>xop-starter-cache-redis</module>
+	    <module>xop-starter-datasource-druid</module>
+	    <module>xop-starter-dubbo</module>
+	    <module>xop-starter-data-jpa</module>
+	    <module>xop-starter-token</module>
+	</modules>
 </project>
