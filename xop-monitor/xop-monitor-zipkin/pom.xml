@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mqoo.platform</groupId>
+		<artifactId>xop-monitor</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>xop-monitor-zipkin</artifactId>
+	<name>xop-monitor-zipkin</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+		    <groupId>io.zipkin.java</groupId>
+		    <artifactId>zipkin-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.zipkin.java</groupId>
+			<artifactId>zipkin-autoconfigure-ui</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!--保存到数据库需要如下依赖 -->
+		<dependency>
+			<groupId>io.zipkin.java</groupId>
+			<artifactId>zipkin-autoconfigure-storage-mysql</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

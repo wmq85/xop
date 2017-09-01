@@ -23,5 +23,6 @@
 	    <module>xop-starter-dubbo</module>
 	    <module>xop-starter-data-jpa</module>
 	    <module>xop-starter-token</module>
-	</modules>
+    	<module>xop-starter-zipkin</module>
+  </modules>
 </project>

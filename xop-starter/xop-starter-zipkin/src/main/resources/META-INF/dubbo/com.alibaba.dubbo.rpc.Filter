@@ -1,0 +1,2 @@
+traceProviderFilter=com.mqoo.xop.starter.zipkin.dubbo.filter.TraceProviderFilter
+traceConsumerFilter=com.mqoo.xop.starter.zipkin.dubbo.filter.TraceConsumerFilter

@@ -57,6 +57,10 @@ spring:
     module:
       name: ${spring.application.name}
     scan: com.mqoo.platform.xop.example
+    
+  #配置zipKin Server的地址
+  zipkin:
+    base-url: http://127.0.0.1:9441
 xop:
   cache:
     #是否开启spring session
@@ -76,4 +80,10 @@ xop:
       threads: 0
       nettyThreads: 0
       useLinuxNativeEpoll: false
-      
+
+dubbo:
+  trace:
+    enabled: true
+    connectTimeout: 1000
+    readTimeout: 1000
+    zipkinUrl: http://localhost:9441      
