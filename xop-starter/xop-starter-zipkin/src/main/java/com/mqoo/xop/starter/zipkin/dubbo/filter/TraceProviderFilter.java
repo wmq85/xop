@@ -33,7 +33,7 @@ public class TraceProviderFilter implements Filter {
 
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    private Span startTrace(Map<String, String> attaches) {
+    private Span startTrace(Map<String, String> attaches, Invoker<?> invoker,Invocation invocation) {
 
         Long traceId = Long.valueOf(attaches.get(TraceContext.TRACE_ID_KEY));
         Long parentSpanId = Long.valueOf(attaches.get(TraceContext.SPAN_ID_KEY));
@@ -48,7 +48,9 @@ public class TraceProviderFilter implements Filter {
         providerSpan.setId(id);
         providerSpan.setParent_id(parentSpanId);
         providerSpan.setTrace_id(traceId);
-        providerSpan.setName(TraceContext.getTraceConfig().getApplicationName());
+        String serviceName = invoker.getInterface().getSimpleName() + "." + invocation.getMethodName();
+        providerSpan.setName(serviceName);
+        //providerSpan.setName(TraceContext.getTraceConfig().getApplicationName());
         long timestamp = System.currentTimeMillis()*1000;
         providerSpan.setTimestamp(timestamp);
 
@@ -90,7 +92,7 @@ public class TraceProviderFilter implements Filter {
             return invoker.invoke(invocation);
         }
         Stopwatch watch = Stopwatch.createStarted();
-        Span providerSpan= this.startTrace(attaches);
+        Span providerSpan= this.startTrace(attaches,invoker, invocation);
 
         Result result = invoker.invoke(invocation);
         this.endTrace(providerSpan,watch);

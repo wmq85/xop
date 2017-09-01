@@ -72,6 +72,10 @@
 		</dependency>
 		
 		<dependency>
+		   <groupId>org.springframework.cloud</groupId>
+		   <artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.mqoo.platform</groupId>
 			<artifactId>xop-starter-zipkin</artifactId>
 		</dependency>

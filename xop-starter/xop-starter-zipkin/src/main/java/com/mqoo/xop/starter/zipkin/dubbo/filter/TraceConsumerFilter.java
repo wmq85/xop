@@ -3,8 +3,10 @@ package com.mqoo.xop.starter.zipkin.dubbo.filter;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import org.jboss.netty.handler.timeout.IdleStateAwareChannelUpstreamHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cloud.sleuth.Tracer;
 
 import com.alibaba.dubbo.common.extension.Activate;
 import com.alibaba.dubbo.rpc.Filter;
@@ -13,6 +15,7 @@ import com.alibaba.dubbo.rpc.Invoker;
 import com.alibaba.dubbo.rpc.Result;
 import com.alibaba.dubbo.rpc.RpcException;
 import com.google.common.base.Stopwatch;
+import com.mqoo.xop.starter.spring.util.SpringContextUtil;
 import com.mqoo.xop.starter.zipkin.context.TraceContext;
 import com.mqoo.xop.starter.zipkin.trace.TraceAgent;
 import com.mqoo.xop.starter.zipkin.utils.IdUtils;
@@ -35,24 +38,38 @@ public class TraceConsumerFilter implements Filter {
 
     //private TraceAgent traceAgent=new TraceAgent(TraceContext.getTraceConfig().getZipkinUrl());
 
+    /**
+     * 从sleuth中获取traceId
+     * @return
+     */
+    private org.springframework.cloud.sleuth.Span getSleuthSpan(){
+         Tracer tracer=SpringContextUtil.getBean(Tracer.class);
+         if(tracer!=null){
+             return tracer.getCurrentSpan();
+         }
+         return null;
+    }
+    
     private Span startTrace(Invoker<?> invoker, Invocation invocation) {
 
         Span consumerSpan = new Span();
 
+        org.springframework.cloud.sleuth.Span sleuthSpan=getSleuthSpan();
         Long traceId=null;
-        long id = IdUtils.get();
-        consumerSpan.setId(id);
-        if(null==TraceContext.getTraceId()){
-            TraceContext.start();
-            traceId=id;
+        Long parentSpanId=null;
+        Long spanId=IdUtils.get();
+        if(isTrace()){
+            traceId=sleuthSpan.getTraceId();
+            parentSpanId=sleuthSpan.getSpanId();
+            TraceContext.setTraceId(traceId);
+            TraceContext.setSpanId(spanId);
         }
-        else {
-            traceId=TraceContext.getTraceId();
-        }
-
-        consumerSpan.setTrace_id(traceId);
-        consumerSpan.setParent_id(TraceContext.getSpanId());
-        consumerSpan.setName(TraceContext.getTraceConfig().getApplicationName());
+        consumerSpan.setId(spanId);
+        consumerSpan.setTrace_id(TraceContext.getTraceId());
+        consumerSpan.setParent_id(parentSpanId);
+        String serviceName = invoker.getInterface().getSimpleName() + "." + invocation.getMethodName();
+        consumerSpan.setName(serviceName);
+        //consumerSpan.setName(TraceContext.getTraceConfig().getApplicationName());
         long timestamp = System.currentTimeMillis()*1000;
         consumerSpan.setTimestamp(timestamp);
 
@@ -87,7 +104,7 @@ public class TraceConsumerFilter implements Filter {
 
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
-        if(!TraceContext.getTraceConfig().isEnabled()){
+        if(!TraceContext.getTraceConfig().isEnabled() || !isTrace()){
             return invoker.invoke(invocation);
         }
 
@@ -101,5 +118,10 @@ public class TraceConsumerFilter implements Filter {
         this.endTrace(span,watch);
 
         return result;
+    }
+    
+    private boolean isTrace(){
+        org.springframework.cloud.sleuth.Span sleuthSpan=getSleuthSpan();
+        return sleuthSpan!=null && sleuthSpan.isExportable();
     }
 }

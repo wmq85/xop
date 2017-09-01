@@ -23,7 +23,7 @@ import com.mqoo.platform.xop.example.dubbo.service.EchoInfoService;
  */
 @RestController
 public class EchoController extends BaseController {
-    @Reference(version = "1.0.0",filter={"traceConsumerFilter"})
+    @Reference(version = "1.0.0")
     public EchoInfoService echoInfoService;
 
     @RequestMapping("/echo")
