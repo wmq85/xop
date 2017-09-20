@@ -24,5 +24,6 @@
 	    <module>xop-starter-data-jpa</module>
 	    <module>xop-starter-token</module>
     	<module>xop-starter-zipkin</module>
+    <module>xop-starter-wechat</module>
   </modules>
 </project>

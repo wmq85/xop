@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.mqoo.xop.starter.wechat.config.WechatMpConfiguration,com.mqoo.xop.starter.wechat.config.WechatEndpointConfiguration,com.mqoo.xop.starter.wechat.config.WechatAuthConfiguration

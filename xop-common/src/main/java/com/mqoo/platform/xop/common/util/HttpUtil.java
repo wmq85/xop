@@ -6,6 +6,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.WebRequest;
 
 /**
  * HttpUtil
@@ -52,5 +53,15 @@ public class HttpUtil {
             return request;
         }
         return null;
+    }
+    
+    public static boolean isAjaxRequest(HttpServletRequest request){
+        return  (request.getHeader("X-Requested-With") != null  
+        && "XMLHttpRequest".equals(request.getHeader("X-Requested-With").toString())) ;
+    }
+    
+    public static boolean isAjaxRequest(WebRequest webRequest) {
+        String requestedWith = webRequest.getHeader("X-Requested-With");
+        return requestedWith != null ? "XMLHttpRequest".equals(requestedWith) : false;
     }
 }
