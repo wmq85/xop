@@ -29,14 +29,14 @@ import com.mqoo.xop.starter.wechat.utils.JsonUtils;
  */
 public class WechatAuthFilter extends OncePerRequestFilter {
     private WechatAuthProperties wechatAuthProperties;
-    
+
     public WechatAuthFilter(WechatAuthProperties wechatAuthProperties) {
         this.wechatAuthProperties = wechatAuthProperties;
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-                    FilterChain filterChain) throws ServletException, IOException {
+            FilterChain filterChain) throws ServletException, IOException {
         HttpServletResponse responseToUse = response;
         //
         responseToUse.setHeader("Cache-Control", "no-cache"); // HTTP 1.1
@@ -50,7 +50,7 @@ public class WechatAuthFilter extends OncePerRequestFilter {
             if (!urlInPattern(requestURI)) {
                 filterChain.doFilter(request, responseToUse);
             } else {
-                String userId = SessionUtil.getUserId(request);
+                String userId = SessionUtil.getUserId();
                 if (userId == null) {
                     String referer = "";
                     if (request.getMethod().equalsIgnoreCase("get")) {
@@ -60,13 +60,13 @@ public class WechatAuthFilter extends OncePerRequestFilter {
                             referer = referer + "?" + queryString;
                         }
                     }
-                    String dispatcherUrl = AuthRedirector.REDIRECT_URL;
+                    String dispatcherUrl = AuthRedirector.REDIRECT_AUTH_URL;
                     if (StringUtils.isNotBlank(referer)) {
-                        dispatcherUrl = dispatcherUrl + "?"+AuthRedirector.REDIRECT_REFERER+"="
-                                        + AuthRedirector.encodeRedirectUrl(referer);
+                        dispatcherUrl = dispatcherUrl + "?" + AuthRedirector.REDIRECT_REFERER + "="
+                                + AuthRedirector.encodeRedirectUrl(referer);
                     }
                     if (HttpUtil.isAjaxRequest(request)) {
-                        BaseStatusSupportResponse<String> rsp =new BaseStatusSupportResponse<>();
+                        BaseStatusSupportResponse<String> rsp = new BaseStatusSupportResponse<>();
                         rsp.setStatus(HttpStatus.UNAUTHORIZED.value());
                         rsp.setData("USER_NO_LOGIN");
                         String rspJson = JsonUtils.toJson(rsp);
@@ -85,7 +85,7 @@ public class WechatAuthFilter extends OncePerRequestFilter {
         }
     }
 
-    
+
     private boolean urlInPattern(String requestUri) {
         AntPathMatcher antPathMatcher = new AntPathMatcher();
         List<String> ignoreUrls = wechatAuthProperties.getAuthPattern();

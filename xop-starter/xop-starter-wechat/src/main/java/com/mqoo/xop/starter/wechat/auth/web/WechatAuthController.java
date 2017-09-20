@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mqoo.platform.xop.common.web.api.response.BaseStatusSupportResponse;
 import com.mqoo.xop.starter.wechat.auth.AuthRedirector;
-import com.mqoo.xop.starter.wechat.auth.WechatLoginSupport;
+import com.mqoo.xop.starter.wechat.auth.WechatSessionSupport;
 import com.mqoo.xop.starter.wechat.auth.config.WechatAuthProperties;
 
 import me.chanjar.weixin.common.bean.WxJsapiSignature;
@@ -34,17 +34,17 @@ import me.chanjar.weixin.mp.bean.result.WxMpUser;
  *
  */
 @Controller
-public class AuthController {
+public class WechatAuthController {
     final Logger LOG = LoggerFactory.getLogger(getClass());
     @Autowired
     AuthRedirector authRedirector;
     @Autowired
     WxMpService wxMpService;
     @Autowired
-    WechatLoginSupport wechatLoginSupport;
+    WechatSessionSupport wechatLoginSupport;
     @Autowired
     WechatAuthProperties wechatAuthProperties;
-    
+
     /**
      * 重定向到微信授权页面
      * 
@@ -52,28 +52,29 @@ public class AuthController {
      * @param response
      * @return
      */
-    @RequestMapping("/authRedirect")
+    @RequestMapping(AuthRedirector.REDIRECT_AUTH_URL)
     String authRedirect(HttpServletRequest request, HttpServletResponse response) {
         String referer = request.getParameter("referer");
         String authRedirectUrl = authRedirector.authToRedirectUrl(referer);
         return "redirect:" + authRedirectUrl;
     }
 
-    
+
     /**
      * 微信授权后的重定向页面
+     * 
      * @param request
      * @param response
      * @return
      */
-    @RequestMapping(value = "/redirect", method = RequestMethod.GET)
+    @RequestMapping(value = "/wechat/redirect", method = RequestMethod.GET)
     public String redirect(HttpServletRequest request, HttpServletResponse response) {
         String code = request.getParameter("code");
         String state = request.getParameter("state");
         String redirectUrl = request.getParameter("redirectUrl");
         // 判断code是否为空
         if (StringUtils.isBlank(code)) {
-            return "forward:/authRedirect";
+            return "forward:/wechat/authRedirect";
         }
 
         //
@@ -89,9 +90,8 @@ public class AuthController {
             // get user
             WxMpUser wxMpUser = wxMpService.oauth2getUserInfo(oauth2AccessToken, "zh_CN");
             LOG.debug("WX mp user:{}", wxMpUser);
-            //handle user
-            String userId= wechatLoginSupport.handleWxMpUser(wxMpUser);
-            SessionUtil.putUserId(userId, request);
+            // handle user
+            String userId = wechatLoginSupport.createSession(wxMpUser);
             // 跳转到页面
             if (StringUtils.isNotBlank(redirectUrl)) {
                 LOG.debug("redirect url base64:{}", redirectUrl);
@@ -119,12 +119,13 @@ public class AuthController {
      * @return
      * @throws WxErrorException
      */
-    @RequestMapping("/jsconfig")
+    @RequestMapping("/wechat/jsconfig")
     @ResponseBody
-    public BaseStatusSupportResponse<Map<String, String>> jsconfig(String signUrl) throws WxErrorException {
+    public BaseStatusSupportResponse<Map<String, String>> jsconfig(String signUrl)
+            throws WxErrorException {
         // signature
         String url = StringUtils.isEmpty(signUrl) ? wechatAuthProperties.getHomeUrl().trim()
-                        : StringUtils.trim(signUrl);
+                : StringUtils.trim(signUrl);
         LOG.debug("Sign>>> url:{}", url);
         WxJsapiSignature jsapiSignature = wxMpService.createJsapiSignature(url);
         String signature = jsapiSignature.getSignature();

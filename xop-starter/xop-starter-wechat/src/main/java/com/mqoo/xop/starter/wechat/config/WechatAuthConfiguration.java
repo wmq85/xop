@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.mqoo.xop.starter.wechat.auth.AuthRedirector;
-import com.mqoo.xop.starter.wechat.auth.WechatLoginSupport;
+import com.mqoo.xop.starter.wechat.auth.WechatSessionSupport;
 import com.mqoo.xop.starter.wechat.auth.config.WechatAuthProperties;
 import com.mqoo.xop.starter.wechat.auth.web.WechatAuthFilter;
 
@@ -35,13 +35,13 @@ public class WechatAuthConfiguration {
     }
     
     @Bean
-    WechatLoginSupport wechatLoginSupport(){
-        WechatLoginSupport wechatLoginSupport=createWechatLoginSupport();
+    WechatSessionSupport wechatLoginSupport(){
+        WechatSessionSupport wechatLoginSupport=createWechatLoginSupport();
         return wechatLoginSupport;
     }
     
-    protected WechatLoginSupport createWechatLoginSupport(){
-        WechatLoginSupport wechatLoginSupport=new WechatLoginSupport();
+    protected WechatSessionSupport createWechatLoginSupport(){
+        WechatSessionSupport wechatLoginSupport=new WechatSessionSupport();
         return wechatLoginSupport;
     }
     

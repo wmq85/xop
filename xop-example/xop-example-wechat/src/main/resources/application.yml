@@ -3,16 +3,21 @@ server:
 
 xop:
   wechat:
+#    mp:
+#      appId: wx37abeff2db731a8e
+#      secret: 35e0f127fca4b02e96a7cd12aac2150c
+#      token: token123abc
+#      aesKey: TrZYdBby86AP1C7juMakFi5uW1Nn6x7GPDC7NRkPPhn
     mp:
-      appId: wx37abeff2db731a8e
-      secret: 35e0f127fca4b02e96a7cd12aac2150c
+      appId: wx2b1676a19bac325d
+      secret: d5803868b17ef1ceabe3bbc89c1a2593
       token: token123abc
       aesKey: TrZYdBby86AP1C7juMakFi5uW1Nn6x7GPDC7NRkPPhn
     auth:
-      host: ${HOST_REMOTE:http://127.0.0.1:9819}
-      redirectPrefix: ${xop.wechat.auth.host}/redirect
+      host: ${HOST_REMOTE:http://icanfly.ngrok.cc}
+      redirectPrefix: ${xop.wechat.auth.host}/wechat/redirect
       authorizeUrl: https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s&response_type=code&scope=snsapi_userinfo&state=123456#wechat_redirect
-      homeUrl: ${xop.wechat.auth.host}/web/p/index.html
-      errorUrl: ${xop.wechat.auth.host}/web/error.html
-      authPattern: ["/web/p/**"]
+      homeUrl: ${xop.wechat.auth.host}/index.html
+      errorUrl: ${xop.wechat.auth.host}/error.html
+      authPattern: ["/p/**"]
      

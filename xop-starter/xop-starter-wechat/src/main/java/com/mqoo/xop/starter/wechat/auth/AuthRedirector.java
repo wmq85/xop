@@ -14,9 +14,9 @@ import com.mqoo.xop.starter.wechat.config.WechatMpProperties;
  */
 public class AuthRedirector {
     public final static String REDIRECT_URL_PARAM = "redirectUrl";
-    public final static String REDIRECT_URL = "/authRedirect";
+    public final static String REDIRECT_AUTH_URL = "/wechat/auth";
     public final static String REDIRECT_REFERER = "referer";
-    
+
     private WechatAuthProperties wechatAuthProperties;
     private WechatMpProperties wechatMpProperties;
 
@@ -28,20 +28,20 @@ public class AuthRedirector {
      * @return
      */
     public String authToRedirectUrl(String refer) {
-        String mpAppId=wechatMpProperties.getAppId();
-        String redirectPrefix=wechatAuthProperties.getRedirectPrefix();
-        String authorizeUrl=wechatAuthProperties.getAuthorizeUrl();
+        String mpAppId = wechatMpProperties.getAppId();
+        String redirectPrefix = wechatAuthProperties.getRedirectPrefix();
+        String authorizeUrl = wechatAuthProperties.getAuthorizeUrl();
         String url = redirectPrefix;
         if (StringUtils.isNotBlank(refer)) {
             String encodeStr = refer.startsWith("http") ? encodeRedirectUrl(refer) : refer;
             if (StringUtils.contains(redirectPrefix, "?")) {
-                url = url + "&"+REDIRECT_URL_PARAM+"=" + encodeStr;
+                url = url + "&" + REDIRECT_URL_PARAM + "=" + encodeStr;
             } else {
-                url = url + "?"+REDIRECT_URL_PARAM+"=" + encodeStr;
+                url = url + "?" + REDIRECT_URL_PARAM + "=" + encodeStr;
             }
         }
         String authRedirectUrl =
-                        String.format(authorizeUrl, mpAppId, java.net.URLEncoder.encode(url));
+                String.format(authorizeUrl, mpAppId, java.net.URLEncoder.encode(url));
         return authRedirectUrl;
     }
 

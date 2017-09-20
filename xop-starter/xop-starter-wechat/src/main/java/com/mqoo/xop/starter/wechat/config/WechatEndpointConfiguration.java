@@ -9,6 +9,7 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProce
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.annotation.Configuration;
 
+import com.mqoo.xop.starter.wechat.auth.web.WechatAuthController;
 import com.mqoo.xop.starter.wechat.endpoint.WechatController;
 import com.mqoo.xop.starter.wechat.endpoint.WxMenuController;
 
@@ -18,17 +19,24 @@ import com.mqoo.xop.starter.wechat.endpoint.WxMenuController;
  * @author mingqi.wang
  */
 @Configuration
-public class WechatEndpointConfiguration implements BeanDefinitionRegistryPostProcessor{
+public class WechatEndpointConfiguration implements BeanDefinitionRegistryPostProcessor {
 
     @Override
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {}
+    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)
+            throws BeansException {}
 
     @Override
-    public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        BeanDefinition wechatControllerDefinition = new RootBeanDefinition(WechatController.class, Autowire.BY_TYPE.value(), true);
-        BeanDefinition wxMenuControllerDefinition = new RootBeanDefinition(WxMenuController.class, Autowire.BY_TYPE.value(), true);
+    public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry)
+            throws BeansException {
+        BeanDefinition wechatControllerDefinition =
+                new RootBeanDefinition(WechatController.class, Autowire.BY_TYPE.value(), true);
+        BeanDefinition wxMenuControllerDefinition =
+                new RootBeanDefinition(WxMenuController.class, Autowire.BY_TYPE.value(), true);
+        BeanDefinition wxAuthControllerDefinition =
+                new RootBeanDefinition(WechatAuthController.class, Autowire.BY_TYPE.value(), true);
         registry.registerBeanDefinition("wechatController", wechatControllerDefinition);
         registry.registerBeanDefinition("wxMenuController", wxMenuControllerDefinition);
+        registry.registerBeanDefinition("wxAuthController", wxAuthControllerDefinition);
     }
 
 }
